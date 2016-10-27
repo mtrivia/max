@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>MuleSoft's Hackathon</title>
-        <link rel="stylesheet" href="css/main.css"type="text/css" />
+        <link rel="stylesheet" href="css/main.css" type="text/css" />
         <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
         <script type="text/javascript" src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/max_min.js"></script>
@@ -117,6 +117,8 @@
         function startSpin()
 
         {
+            nothingSelected = true;
+
             // Ensure that spinning can't be clicked again while already running.
             if (wheelSpinning == false)
             {
@@ -131,6 +133,8 @@
             }
 
         }
+
+        var nothingSelected = true;
 
         // -------------------------------------------------------
         // Function for reset button.
@@ -155,7 +159,7 @@
             var winningSegment = theWheel.getIndicatedSegment();
             getQuestions(winningSegment.id);
             document.getElementById('answerId').className = "clickable";
-            resetWheel();
+            // resetWheel();
           }
 
         function getQuestions(productName){
@@ -181,12 +185,22 @@
         }
 
       function validateAnswer(answerId){
+        if (!nothingSelected) {
+          return;
+        }
+
+        var originalClass = document.getElementById("answer_"+answerId).className;
+
         if(lastAnswers[answerId].is_correct){
-          var originalClass = document.getElementById("answer_"+answerId).className;
           document.getElementById("answer_"+answerId).className=originalClass + ' answer-success';
           displayBadge(lastProduct);
+        } else {
+          document.getElementById("answer_"+answerId).className=originalClass + ' answer-failed';
         }
+        nothingSelected = false;
+        resetWheel();
       }
+
       //Display badge on right answer
       function displayBadge(product){
         document.getElementById(product).style.visibility='visible';
