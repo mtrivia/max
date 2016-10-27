@@ -71,6 +71,10 @@ height: calc(100vh - 15px);
     background-color: #5cb85c;
 }
 
+.answer-failed{
+    background-color: #ff0000;
+}
+
 .roulette_container{
     margin-top: 30%;
     margin-left: 10%;

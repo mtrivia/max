@@ -163,7 +163,7 @@
           }
 
         function getQuestions(productName){
-          fetch('http://ec2-35-162-13-71.us-west-2.compute.amazonaws.com:8080/products/'+productName)
+          fetch('https://ec2-35-162-13-71.us-west-2.compute.amazonaws.com:8080/products/'+productName)
               .then(function (response) {
               lastProduct = productName;
               return response.json();
